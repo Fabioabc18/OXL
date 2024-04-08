@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-$!ix_7=x8i35srzxh1jl6x2nyzn-8jea_2hb@5gf!*di1e+iua
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh', ' 127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -84,12 +84,12 @@ WSGI_APPLICATION = 'OXL.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': "OXL",
-        'USER': "root",
-        'PASSWORD': "1234",
-        'HOST': '127.0.0.1',
-        'PORT': 3306,
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': "railway",
+        'USER': "postgres",
+        'PASSWORD': "cJjPVSLFIXiGdYEfGqRjTIVYxDBeUexc",
+        'HOST': 'viaduct.proxy.rlwy.net',
+        'PORT': 11990,
     }
 }
 

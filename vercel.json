@@ -1,20 +1,27 @@
 {
-  "version": 2,
-  "rewrites": [
-    { "source": "/accounts/(.*)", "destination": "/accounts/views.py" },
-    { "source": "/anuncios/(.*)", "destination": "/anuncios/views.py" },
-    { "source": "/categorias/(.*)", "destination": "/categorias/views.py" },
-    { "source": "/contactos/(.*)", "destination": "/contactos/views.py" },
-    { "source": "/home/(.*)", "destination": "/home/views.py" },
-    { "source": "/static/(.*)", "destination": "/static/$1" },
-    { "source": "/templates/registration/(.*)", "destination": "/templates/registration/$1" },
-    { "source": "/(.*)", "destination": "/OXL/$1" }
-  ],
-  "builds": [
-    { "src": "accounts/views.py", "use": "@now/python" },
-    { "src": "anuncios/views.py", "use": "@now/python" },
-    { "src": "categorias/views.py", "use": "@now/python" },
-    { "src": "contactos/views.py", "use": "@now/python" },
-    { "src": "home/views.py", "use": "@now/python" }
-  ]
-}
+    "version": 2,
+    "builds": [
+      {
+        "src": "OXL/wsgi.py",
+        "use": "@vercel/python",
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+      },
+      {
+        "src": "build_files.sh",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "staticfiles_build"
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/static/(.*)",
+        "dest": "/static/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "OXL/wsgi.py"
+      }
+    ]
+  }
