@@ -1,23 +1,20 @@
 {
-    "version": 2,
-    "routes": [
-      { "src": "/accounts/(.*)", "dest": "/accounts/views.py" },
-      { "src": "/anuncios/(.*)", "dest": "/anuncios/views.py" },
-      { "src": "/categorias/(.*)", "dest": "/categorias/views.py" },
-      { "src": "/contactos/(.*)", "dest": "/contactos/views.py" },
-      { "src": "/home/(.*)", "dest": "/home/views.py" },
-      { "src": "/static/(.*)", "dest": "/static/$1" },
-      { "src": "/templates/registration/(.*)", "dest": "/templates/registration/$1" }
-    ],
-    "builds": [
-      { "src": "accounts/views.py", "use": "@now/python" },
-      { "src": "anuncios/views.py", "use": "@now/python" },
-      { "src": "categorias/views.py", "use": "@now/python" },
-      { "src": "contactos/views.py", "use": "@now/python" },
-      { "src": "home/views.py", "use": "@now/python" }
-    ],
-    "rewrites": [
-      { "source": "/(.*)", "destination": "/OXL/$1" }
-    ]
-  }
-  
+  "version": 2,
+  "rewrites": [
+    { "source": "/accounts/(.*)", "destination": "/accounts/views.py" },
+    { "source": "/anuncios/(.*)", "destination": "/anuncios/views.py" },
+    { "source": "/categorias/(.*)", "destination": "/categorias/views.py" },
+    { "source": "/contactos/(.*)", "destination": "/contactos/views.py" },
+    { "source": "/home/(.*)", "destination": "/home/views.py" },
+    { "source": "/static/(.*)", "destination": "/static/$1" },
+    { "source": "/templates/registration/(.*)", "destination": "/templates/registration/$1" },
+    { "source": "/(.*)", "destination": "/OXL/$1" }
+  ],
+  "builds": [
+    { "src": "accounts/views.py", "use": "@now/python" },
+    { "src": "anuncios/views.py", "use": "@now/python" },
+    { "src": "categorias/views.py", "use": "@now/python" },
+    { "src": "contactos/views.py", "use": "@now/python" },
+    { "src": "home/views.py", "use": "@now/python" }
+  ]
+}
