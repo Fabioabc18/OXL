@@ -1,0 +1,13 @@
+  
+<h2>Sign up</h2>
+
+<h1>{{ message }}</h1>
+
+<form method="POST">
+    {% csrf_token %} 
+    {{ form }}
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email">
+    <button type="submit">Sign up</button>
+</form>
+<h4> Already have an account?  <a href="/accounts/login">Sign in</a></h4>

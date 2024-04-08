@@ -1,0 +1,172 @@
+<!--  -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>O_XL - Site de Anúncios</title>
+
+   
+    <link  href="{% static 'vendor/bootstrap/css/bootstrap.min.css'  %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/fontawesome.css'  %}">
+    <link rel="stylesheet"  href="{% static 'css/templatemo-villa-agency.css'  %}">
+    <link rel="stylesheet" href="{% static 'css/owl.css'  %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css'  %}">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+
+  </head>
+
+<body>
+
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <div class="sub-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-8">
+          <ul class="info">
+            <li><i class="fa fa-envelope"></i> info@oxl.com</li>
+            <li><i class="fa fa-map"></i> Lisbon, Portugal</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="/" class="logo">
+                        <h1>O_XL </h1>
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li><a href="/" class="active">Home</a></li>
+                        <li><a href="anuncios">Anúncios</a></li>
+                        <li><a href="contactos">Contacte-nos</a></li>
+                        {% if user.is_authenticated  %}
+                        <li><a href="{% url 'criaranuncio' %}">Criar Anúncio</a></li>
+                        <li><a href="accounts/logout" ><i class="fa fa-sign-in"></i> Logout</a></li>
+                        {% else %}
+                        <li><a href="accounts/login" ><i class="fa fa-sign-in"></i> Login</a></li>
+                        {% endif %}
+
+                  </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="main-banner">
+    <div class="owl-carousel owl-banner">
+      <div class="item item-1" onclick='location.href="{% url 'anuncios' %}"' style="cursor: pointer">
+        <div class="header-text">
+          <span class="category">Imoveis em <em>Portugal</em></span>
+          <h2>Fantástico!<br>Casas feitas mesmo à medida!</h2>
+        </div>
+      </div>
+      <div class="item item-2" onclick='location.href="{% url 'anuncios' %}"' style="cursor: pointer">
+        <div class="header-text">
+          <span class="category">Melbourne, <em>Australia</em></span>
+          <h2>Be Quick!<br>Get the best villa in town</h2>
+        </div>
+      </div>
+      <div class="item item-3" onclick='location.href="{% url 'anuncios' %}"' style="cursor: pointer">
+        <div class="header-text">
+          <span class="category">Miami, <em>South Florida</em></span>
+          <h2>Act Now!<br>Get the highest level penthouse</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="properties section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 offset-lg-4">
+          <div class="section-heading text-center">
+            <h6>| Anuncios</h6>
+            <h2>We Provide The Best Property You Like</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        {% for anuncio in anuncios %}
+        <div class="col-lg-4 col-md-6">
+          <div class="item">
+            
+            <a href="detalhesanuncio/{{ anuncio.id }}"><img src='{% static "images/property-01.jpg" %}' alt=""></a>
+            <span class="category">{{ anuncio.id_categoria.name }}</span>
+            <h6>€{{ anuncio.preco }}</h6>
+            <h4><a href="detalhesanuncio/{{ anuncio.id }}">{{ anuncio.titulo }}</a></h4>
+            <h4 style="font-size: 17px; font-weight: normal;">{{ anuncio.subtitulo }}</h4>
+            <ul>
+              <li>{{ anuncio.data_post }}</li>
+            </ul>
+            <div class="main-button">
+                <a href="{% url 'detalhesanuncio' anuncio.id %}">Detalhes</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  
+
+  <footer>
+    <div class="container">
+      <div class="col-lg-8">
+        <p>Copyright © 2048 Villa Agency Co., Ltd. All rights reserved. 
+        
+        Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
+      </div>
+    </div>
+  </footer>
+
+
+
+
+
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/isotope.min.js' %}"></script>
+  <script src="{% static 'js/owl-carousel.js' %}"></script>
+  <script src="{% static 'js/counter.js' %}"></script>
+  <script src="{% static 'js/custom.js' %}"></script>
+
+
+
+  </body>
+</html>
+-->
