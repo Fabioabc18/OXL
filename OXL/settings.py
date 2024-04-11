@@ -136,9 +136,9 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATIC_URL = 'static/'
 STATICFILES_DIRS = os.path.join(BASE_DIR, "static"),
-STATIC_ROOT= os.path.join(BASE_DIR,'staticfiles_build', 'static')
+STATIC_URL = 'static/'
+STATIC_ROOT= os.path.join(BASE_DIR,'staticfiles', 'static')
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
