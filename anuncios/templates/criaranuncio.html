@@ -126,7 +126,13 @@ https://templatemo.com/tm-591-villa-agency
                     </div>
                 </div>
                 <div class="col-lg-5">
-                    <form id="contact-form" action="" method="post">
+                  <form id="contact-form" action="" method="post">
+                    {% csrf_token %}
+                    {% if message %}
+                        <div class="alert alert-success">
+                            {{ message }}
+                        </div>
+                    {% endif %}
                     <div class="row">
                         {% csrf_token %}
                             <div>

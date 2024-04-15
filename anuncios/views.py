@@ -23,18 +23,21 @@ def criaranuncio(request):
     if request.method == 'POST':
 
         form = CriarAnuncioForm(request.POST)
+     
+        if form.is_valid():
 
-        anuncio = Anuncio()
+            anuncio = Anuncio()
         
-        anuncio.titulo = form["titulo"].value()
-        anuncio.subtitulo = form["subtitulo"].value()
-        anuncio.preco = form["preco"].value()
-        anuncio.descricao = form["descricao"].value()
+            anuncio.titulo = form["titulo"].value()
+            anuncio.subtitulo = form["subtitulo"].value()
+            anuncio.preco = form["preco"].value()
+            anuncio.descricao = form["descricao"].value()
 
-        anuncio.id_categoria = Categoria.objects.get(id=form["categoria"].value())
-        anuncio.id_utilizador = request.user
+            anuncio.id_categoria = Categoria.objects.get(id=form["categoria"].value())
+            anuncio.id_utilizador = request.user
+            anuncio.save()
 
-        anuncio.save()
+            form = CriarAnuncioForm()
         
 
         context = {
